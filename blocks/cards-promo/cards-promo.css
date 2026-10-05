@@ -1,0 +1,206 @@
+/* cards-promo: full-bleed rounded background tiles with overlaid logo, text and CTA
+   (vusevapor.com "The Drop" / "All Access Rewards" tiles) */
+
+/* Source tiles span the viewport (capped at 1440px) with a 20px gutter, not the 1280px grid */
+main > .section > .cards-promo-wrapper {
+  max-width: 1440px;
+  padding: 0 20px;
+}
+
+.cards-promo > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.cards-promo > ul > li {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: var(--vuse-radius, 20px);
+  background-color: var(--vuse-ink, rgb(29 29 27));
+}
+
+/* Background layer */
+.cards-promo .cards-promo-card-background {
+  grid-area: 1 / 1;
+  position: relative;
+  line-height: 0;
+}
+
+.cards-promo .cards-promo-card-background picture {
+  position: absolute;
+  inset: 0;
+}
+
+.cards-promo .cards-promo-card-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+/* Content layer: left column of the tile (source: col-6 on mobile, col-lg-5 on desktop,
+   inset 20px + 25px vertically and 40px - 15px horizontally) */
+.cards-promo .cards-promo-card-body {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: calc((100% - 50px) / 2 + 50px);
+  padding: 45px 25px;
+  text-align: center;
+}
+
+.cards-promo .cards-promo-card-body > * {
+  margin: 0;
+}
+
+.cards-promo .cards-promo-card-body > p {
+  color: var(--vuse-white, rgb(255 255 255));
+  font-family: var(--body-font-family, mundial, "Gotham Book", sans-serif);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.cards-promo .cards-promo-card-logo {
+  line-height: 0;
+}
+
+.cards-promo .cards-promo-card-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* Never crop the wordmark: override the global 16:9 placeholder ratio */
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* CTA: silver "rewards" pill (gradient fill + gradient 2px border, black text) */
+.cards-promo .cards-promo-card-body > p.button-container {
+  margin-top: 20px;
+  padding: 1.5px;
+  line-height: 0;
+}
+
+main .cards-promo .cards-promo-card-body a.button:any-link {
+  position: relative;
+  min-width: 128px;
+  height: 42px;
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: var(--vuse-radius, 20px);
+  padding: 11px 25px;
+  background:
+    linear-gradient(90.21deg, rgb(144 150 158) 0.18%, rgb(190 196 205) 20.15%, rgb(255 255 255) 60.07%, rgb(190 196 205) 79.84%, rgb(144 150 158)) padding-box,
+    linear-gradient(90.21deg, rgb(45 46 48) 0.18%, rgb(190 196 205) 20.34%, rgb(255 255 255) 40.11%, rgb(190 196 205) 80.04%, rgb(45 46 48)) border-box;
+  box-shadow: rgb(215 179 179 / 50%) 0 1px 0 inset, rgb(0 0 0 / 15%) 0 2px 20px;
+  color: rgb(0 0 0);
+  font-family: var(--body-font-family, mundial, "Gotham Book", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+main .cards-promo .cards-promo-card-body a.button:any-link:hover,
+main .cards-promo .cards-promo-card-body a.button:any-link:focus-visible,
+main .cards-promo .cards-promo-card-body a.button:any-link:active {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(270deg, rgb(0 0 0), rgb(57 57 57) 50%, rgb(0 0 0)) padding-box,
+    linear-gradient(90.21deg, rgb(144 150 158) 0.18%, rgb(190 196 205) 20.15%, rgb(255 255 255) 60.07%, rgb(190 196 205) 79.84%, rgb(144 150 158)) border-box;
+  box-shadow: rgb(215 179 179 / 50%) 0 1px 0 inset, rgb(0 0 0 / 15%) 0 2px 20px;
+  color: var(--vuse-white, rgb(255 255 255));
+  transform: none;
+}
+
+/* Every 2nd tile's mobile art centres its subject (e.g. the rewards phone): content spans the
+   tile, logo on top, text and CTA pinned to the bottom below the art (source col-12 layout) */
+.cards-promo > ul > :where(li:nth-child(2n)) {
+  min-height: 481px;
+}
+
+.cards-promo :where(li:nth-child(2n)) .cards-promo-card-body {
+  width: auto;
+  justify-content: flex-start;
+}
+
+.cards-promo :where(li:nth-child(2n)) .cards-promo-card-logo {
+  margin-bottom: auto;
+}
+
+/* Small screens (mobile art): the logo slot keeps the source's 63px mobile logo height */
+.cards-promo .cards-promo-card-body > .cards-promo-card-logo {
+  display: flex;
+  align-items: center;
+  min-height: 63px;
+}
+
+/* No background image: content spans the tile */
+.cards-promo .cards-promo-card-no-background .cards-promo-card-body {
+  width: auto;
+}
+
+/* 600px+: desktop art, every tile uses the left-column layout */
+@media (width >= 600px) {
+  .cards-promo > ul > :where(li:nth-child(2n)) {
+    min-height: 0;
+  }
+
+  .cards-promo .cards-promo-card-body {
+    width: calc((100% - 50px) / 2 + 50px);
+    justify-content: center;
+  }
+
+  .cards-promo .cards-promo-card-body > .cards-promo-card-logo {
+    display: block;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .cards-promo .cards-promo-card-no-background .cards-promo-card-body {
+    width: auto;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-promo > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-promo > ul > li {
+    min-height: 400px;
+  }
+
+  .cards-promo .cards-promo-card-body {
+    width: calc((100% - 50px) * 5 / 12 + 50px);
+    padding: 50px 25px;
+  }
+
+  .cards-promo .cards-promo-card-body > p {
+    margin-top: 25px;
+    line-height: 20px;
+  }
+
+  .cards-promo .cards-promo-card-body > .cards-promo-card-logo {
+    margin-top: 0;
+  }
+
+  .cards-promo .cards-promo-card-body > p.button-container {
+    margin-top: 20px;
+  }
+}

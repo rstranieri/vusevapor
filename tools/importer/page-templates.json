@@ -1,0 +1,165 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "originals",
+      "urls": [
+        "https://www.vusevapor.com/originals.html"
+      ],
+      "representativeUrl": "https://www.vusevapor.com/originals.html",
+      "description": "Product series landing page: video hero, intro statement, product flavor grid, device color swatches, key features, responsibility statement, program tiles and utility teasers",
+      "urlPattern": "/*",
+      "blocks": [
+        {
+          "name": "hero-video",
+          "instances": [
+            ".hero-banner.cmp-hero-banner--content-left"
+          ]
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            ".section.cmp-section--background-color-grey .cmp-grid-container__items"
+          ]
+        },
+        {
+          "name": "columns-swatches",
+          "instances": [
+            ".section.d-md-block.cmp-section--small-padding"
+          ]
+        },
+        {
+          "name": "cards-feature",
+          "instances": [
+            ".cmp-section.key-features > .cmp-section__container > .aem-Grid > .grid-container"
+          ]
+        },
+        {
+          "name": "cards-promo",
+          "instances": [
+            ".cmp-experiencefragment--tiles .cmp-grid-container--full-viewport"
+          ]
+        },
+        {
+          "name": "cards-teaser",
+          "instances": [
+            ".section.cmp-section--no-padding:not(.d-md-none):has(.cmp-teaser) .cmp-grid-container__items"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "1",
+          "name": "Hero",
+          "selector": [
+            ".section:has(.hero-banner)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-video"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Intro statement",
+          "selector": [
+            ".section:has(> .cmp-section.high-quality-ingredients)",
+            ".cmp-section.high-quality-ingredients"
+          ],
+          "style": "gradient-headline",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-section.high-quality-ingredients h1"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Product flavors grid",
+          "selector": [
+            ".section.cmp-section--background-color-grey"
+          ],
+          "style": "grey",
+          "blocks": [
+            "cards-product"
+          ],
+          "defaultContent": [
+            ".section.cmp-section--background-color-grey .cmp-section__container > .aem-Grid > .button"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Device colors",
+          "selector": [
+            ".responsivegrid > .aem-Grid > .text",
+            ".section.d-md-block.cmp-section--small-padding"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-swatches"
+          ],
+          "defaultContent": [
+            ".responsivegrid > .aem-Grid > .text"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Key features",
+          "selector": [
+            ".section:has(> .cmp-section.key-features)",
+            ".cmp-section.key-features"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": [
+            ".cmp-section.key-features .text h1",
+            ".cmp-section.key-features > .cmp-section__container > .aem-Grid > .button"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Responsibility statement",
+          "selector": [
+            ".section:has(> .cmp-section.vapor-is-for-adults)",
+            ".cmp-section.vapor-is-for-adults"
+          ],
+          "style": "gradient-headline",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-section.vapor-is-for-adults .title",
+            ".cmp-section.vapor-is-for-adults .text",
+            ".cmp-section.vapor-is-for-adults .button"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Program tiles",
+          "selector": [
+            ".section.cmp-section--small-padding:has(.cmp-experiencefragment--tiles)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "8",
+          "name": "Utility teasers",
+          "selector": [
+            ".section.cmp-section--no-padding:not(.d-md-none):has(.cmp-teaser)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-teaser"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

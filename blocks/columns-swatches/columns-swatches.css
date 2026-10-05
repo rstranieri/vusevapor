@@ -1,0 +1,102 @@
+/* columns-swatches: row of device-colour swatches (values from vusevapor.com/originals) */
+
+/*
+ * Mobile / tablet: one centred card per view (source carousel slide = 165px
+ * wide with 16px side padding -> 133px image), neighbours peek and the row
+ * scrolls with scroll-snap instead of carousel arrows/dots.
+ */
+.columns-swatches {
+  margin-top: 30px;
+}
+
+.columns-swatches > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 calc(50% - 82.5px);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 165px;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.columns-swatches > ul::-webkit-scrollbar {
+  display: none;
+}
+
+.columns-swatches .columns-swatches-item {
+  min-width: 0;
+  padding: 0 16px;
+  scroll-snap-align: center;
+}
+
+.columns-swatches .columns-swatches-image {
+  line-height: 0;
+}
+
+.columns-swatches .columns-swatches-image a {
+  display: block;
+}
+
+/* Show the full portrait swatch: override the global 16:9 placeholder ratio */
+.columns-swatches .columns-swatches-image img {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.columns-swatches .columns-swatches-caption {
+  padding-top: var(--space-s, 8px);
+  text-align: center;
+}
+
+.columns-swatches .columns-swatches-caption > * {
+  margin: 0;
+}
+
+/* Tablet: source slide grows to 320px (image at its 200px natural width) */
+@media (width >= 600px) {
+  .columns-swatches > ul {
+    padding-inline: calc(50% - 160px);
+    grid-auto-columns: 320px;
+  }
+}
+
+/*
+ * Desktop: all swatches side by side. Source uses 4 x col-sm-2 (1/6 viewport
+ * each, 15px gutters) centred in a 1440px container -> 4 columns spanning
+ * 2/3 of the viewport, capped at 960px; 30px vertical padding.
+ */
+@media (width >= 900px) {
+  .columns-swatches {
+    margin-top: 50px;
+    padding-block: 30px;
+  }
+
+  .columns-swatches > ul {
+    box-sizing: border-box;
+    width: min(100%, 66.667vw, 960px);
+    margin-inline: auto;
+    padding: 0 15px;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 30px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .columns-swatches.columns-swatches-4-items > ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .columns-swatches .columns-swatches-item {
+    padding: 0;
+  }
+}

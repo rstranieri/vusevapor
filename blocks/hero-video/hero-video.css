@@ -1,0 +1,164 @@
+/* hero-video: background video/poster with overlaid text (vusevapor.com hero banner, content-left) */
+
+/* Full-bleed on mobile; inset rounded panel on desktop (see media query) */
+main > .section > .hero-video-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.hero-video {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  aspect-ratio: 752 / 848; /* mobile source video */
+
+  /* fallback while the video loads (sampled from the source video frame) */
+  background-color: rgb(51 125 197);
+  color: var(--vuse-white, rgb(255 255 255));
+  font-family: mundial, "Gotham Book", sans-serif;
+}
+
+/* Media layer fills the block */
+.hero-video > .hero-video-media {
+  grid-area: 1 / 1;
+  position: relative;
+  line-height: 0;
+}
+
+.hero-video .hero-video-media picture,
+.hero-video .hero-video-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-video .hero-video-media img,
+.hero-video .hero-video-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+/* Hide poster once the video is ready to play */
+.hero-video .hero-video-media.hero-video-playing picture {
+  visibility: hidden;
+}
+
+/* Text layer */
+.hero-video > .hero-video-content {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-video > .hero-video-content > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 95px 0 30px;
+  text-align: center;
+}
+
+.hero-video .hero-video-content > div > * {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  color: var(--vuse-white, rgb(255 255 255));
+}
+
+.hero-video .hero-video-content .hero-video-eyebrow {
+  padding: 0 10px 20px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: normal;
+}
+
+.hero-video .hero-video-content h1 {
+  padding: 0 10px;
+  font-family: mundial, "Gotham Bold", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: normal;
+}
+
+.hero-video .hero-video-content h1 sup {
+  position: relative;
+  top: -0.4em;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+.hero-video .hero-video-content h1 ~ p {
+  padding: 10px 10px 0;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 20px;
+}
+
+/* No media: plain text banner */
+.hero-video.no-media {
+  aspect-ratio: auto;
+}
+
+.hero-video.no-media > .hero-video-content {
+  align-items: center;
+}
+
+@media (width >= 900px) {
+  main > .section > .hero-video-wrapper {
+    padding: 30px;
+  }
+
+  .hero-video {
+    /* desktop source video ratio: 1380x500 at 1440px, never cropped */
+    aspect-ratio: 2760 / 1000;
+    border-radius: var(--vuse-radius, 20px);
+  }
+
+  /* Desktop: text left, vertically centered in a 1280px container */
+  .hero-video > .hero-video-content {
+    align-items: center;
+  }
+
+  .hero-video > .hero-video-content > div {
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1280px;
+    padding: 30px 0 30px 25px;
+    text-align: left;
+  }
+
+  .hero-video .hero-video-content > div > * {
+    max-width: 60%;
+  }
+
+  .hero-video .hero-video-content .hero-video-eyebrow {
+    position: relative;
+    top: 5px;
+    font-size: 20px;
+  }
+
+  .hero-video .hero-video-content h1 {
+    position: relative;
+    top: 5px;
+    margin-bottom: 15px;
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .hero-video .hero-video-content h1 ~ p {
+    max-width: min(60%, 600px);
+    padding: 10px 0 0 10px;
+    font-size: 20px;
+  }
+}

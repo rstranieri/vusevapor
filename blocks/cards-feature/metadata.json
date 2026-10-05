@@ -1,0 +1,20 @@
+{
+  "variantName": "cards-feature",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "feature-list",
+    "imagePattern": "circular-icon-left",
+    "structure": "icon + title + description"
+  },
+  "contentPattern": "One row per feature (4 rows), 2 cells: [circular icon image] | [h3 title, p description]",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

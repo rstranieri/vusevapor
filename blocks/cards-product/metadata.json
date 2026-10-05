@@ -1,0 +1,20 @@
+{
+  "variantName": "cards-product",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light-grey-panel",
+    "density": "medium",
+    "purpose": "product-flavor-grid",
+    "imagePattern": "product-pack-image",
+    "structure": "tag + image + title + strengths + description"
+  },
+  "contentPattern": "One row per product (6 rows), 2 cells: [pack image] | [p tag 'Fresh New Look. Same Original Taste.', h3 title, p strengths (e.g. '1.8% | 2.4% | 5%'), p description]",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

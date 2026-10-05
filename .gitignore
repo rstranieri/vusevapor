@@ -17,3 +17,10 @@ helix-importer-ui
 !AGENTS.md
 tasks/lessons.md
 tasks/todo.md
+migration-work/navigation-validation/
+migration-work/footer-validation/
+
+# generated import artifacts
+tools/importer/*.bundle.js
+tools/importer/reports/
+tools/importer/bd-snapshots/

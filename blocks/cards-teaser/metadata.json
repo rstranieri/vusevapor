@@ -1,0 +1,20 @@
+{
+  "variantName": "cards-teaser",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "colorful-gradient",
+    "density": "minimal",
+    "purpose": "utility-teasers",
+    "imagePattern": "full-bleed-background-illustration",
+    "structure": "background + title + description + cta"
+  },
+  "contentPattern": "One row per teaser (3 rows), 2 cells: [background image] | [h3 title, p description, p > a CTA]. Rows: Text Sign-Up (/sms.html 'Get Texts'), Offers (/mobile-coupons.html 'Get Offers'), Store Locator (/store-locator.html 'Find Vuse').",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,106 @@
+/* cards-feature: circular icon + title + description, stacked on mobile, 2x2 icon-left grid on desktop */
+
+.cards-feature {
+  margin-block: 45px 82px;
+}
+
+.cards-feature > ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 30px;
+  max-width: 1200px;
+}
+
+.cards-feature > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.cards-feature .cards-feature-card-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  line-height: 0;
+}
+
+/* overrides the global 16:9 cover rule for unsized images */
+.cards-feature .cards-feature-card-icon img,
+.cards-feature .cards-feature-card-icon .icon {
+  display: block;
+  width: 94px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.cards-feature .cards-feature-card-body {
+  align-self: stretch;
+  min-width: 0;
+}
+
+/* main prefix outranks the theme's body.vuse main h3/p rules */
+main .cards-feature .cards-feature-card-body h3 {
+  margin: 10px 0 15px;
+  color: var(--vuse-navy, rgb(27 54 93));
+  font-size: 24px;
+  line-height: 26px;
+}
+
+main .cards-feature .cards-feature-card-body p {
+  margin: 0;
+  color: var(--vuse-iron-gray, rgb(77 77 77));
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.cards-feature .cards-feature-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  /* source grid spans 8 of 12 viewport columns at this range */
+  .cards-feature > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+    width: min(100%, 66.667vw);
+  }
+
+  .cards-feature > ul > li {
+    display: grid;
+    grid-template-columns: calc(100% / 3 + 5px) minmax(0, 1fr);
+    align-items: start;
+    text-align: left;
+  }
+
+  .cards-feature .cards-feature-card-icon {
+    justify-content: flex-end;
+    margin-bottom: 0;
+    padding-inline-start: 15px;
+  }
+
+  .cards-feature .cards-feature-card-body {
+    padding-inline-start: 35px;
+  }
+
+  main .cards-feature .cards-feature-card-body h3 {
+    line-height: 28px;
+  }
+
+  .cards-feature > ul > li.cards-feature-card-no-icon {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (width >= 1200px) {
+  /* 10 of 12 viewport columns, capped at 1200px */
+  .cards-feature > ul {
+    width: min(100%, 83.333vw);
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "variantName": "columns-swatches",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "device-color-showcase",
+    "imagePattern": "image-only",
+    "structure": "4 images"
+  },
+  "contentPattern": "1 row x 4 cells, each cell a single image with alt (Red/Blue/Green/Slate - with USB Charging Cable)",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

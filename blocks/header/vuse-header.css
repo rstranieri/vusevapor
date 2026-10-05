@@ -1,0 +1,574 @@
+/* VUSE header variant – mobile first, 600/900/1200px breakpoints */
+/* stylelint-disable no-descending-specificity -- header cascade order is intentional across breakpoints */
+
+/* the VUSE header sits in the page flow (not fixed) and sizes to its content */
+header:has(.vuse-header) {
+  height: auto;
+  background-color: rgb(255 255 255);
+}
+
+.vuse-header {
+  --vh-navy: var(--vuse-navy, rgb(27 54 93));
+  --vh-blue: var(--vuse-blue, rgb(35 97 146));
+  --vh-blue-light: rgb(61 135 203);
+  --vh-orange: rgb(220 88 42);
+  --vh-white: rgb(255 255 255);
+  --vh-divider: rgb(241 242 242);
+  --vh-font: mundial, "Gotham Book", sans-serif;
+  --vh-font-bold: mundial, "Gotham Bold", sans-serif;
+  --vh-highlight: linear-gradient(90deg, rgb(71 130 194) -4.07%, rgb(41 74 147) 28.75%, rgb(148 42 125) 55.51%, rgb(220 34 78) 71.33%);
+
+  padding-top: var(--vh-warning-height, 0);
+  font-family: var(--vh-font);
+  color: var(--vuse-ink, rgb(29 29 27));
+}
+
+.vuse-header .vuse-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* nicotine warning – mobile: the block (box + notice strip) is pinned to the top of the viewport
+   and sized to 20% of the viewport height; the header reserves its height (--vh-warning-height, set in JS) */
+.vuse-header .vuse-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-bottom: 5px;
+  background-color: rgb(255 255 255);
+}
+
+.vuse-header .vuse-warning-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 20vh;
+  border: 6px solid var(--vh-white);
+  background-color: rgb(0 0 0);
+}
+
+.vuse-header .vuse-warning-text {
+  margin: 0;
+  padding: 0 8px;
+  color: var(--vh-white);
+  font-family: "Gotham Book", var(--vh-font);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+}
+
+.vuse-header .vuse-warning-notice {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px 0;
+  color: rgb(0 0 0);
+  font-family: "Open Sans", arial, sans-serif;
+  font-size: 11px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* announcement bars */
+.vuse-header .vuse-announcement {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  color: var(--vh-white);
+  font-size: 14px;
+  font-weight: 700;
+  background-image: linear-gradient(164.22deg, rgb(61 135 203) 24.82%, rgb(35 97 146) 74.47%, rgb(27 54 93) 99.29%);
+}
+
+.vuse-header .vuse-announcement-1 {
+  background-image: linear-gradient(164.22deg, rgb(71 130 194) 24.82%, rgb(148 41 125) 74.47%, rgb(220 34 78) 99.29%);
+}
+
+.vuse-header .vuse-announcement-messages {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  margin: 0 46px 0 16px;
+  padding: 0 12px;
+  list-style: none;
+}
+
+.vuse-header .vuse-announcement-messages > li {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  color: var(--vh-white);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  text-align: center;
+  transition: opacity 0.8s, visibility 0.8s;
+}
+
+.vuse-header .vuse-announcement-messages > li.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.vuse-header .vuse-announcement-messages a:any-link {
+  margin: 0 0.25em;
+  color: var(--vh-white);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.vuse-header .vuse-announcement-close,
+.vuse-header .vuse-drawer-close {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.vuse-header .vuse-announcement-close {
+  top: 12px;
+  right: 10px;
+}
+
+.vuse-header .vuse-announcement-close::before,
+.vuse-header .vuse-announcement-close::after,
+.vuse-header .vuse-drawer-close::before,
+.vuse-header .vuse-drawer-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 3px;
+  background-color: var(--vh-white);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.vuse-header .vuse-announcement-close::after,
+.vuse-header .vuse-drawer-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* main bar – mobile: Join Rewards | logo | notifications + menu toggle */
+.vuse-header .vuse-navbar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 60px;
+  padding: 0 20px 0 5px;
+  background-color: var(--vh-white);
+  box-shadow: rgb(0 0 0 / 10%) 0 2px 10px 0;
+}
+
+.vuse-header .vuse-brand {
+  display: block;
+  flex-shrink: 0;
+  order: 1;
+  margin: 0 auto;
+  line-height: 0;
+}
+
+.vuse-header .vuse-brand img {
+  width: 80px;
+  height: 20px;
+  aspect-ratio: auto;
+}
+
+/* on mobile the tool items join the bar's flex layout directly */
+.vuse-header .vuse-tools {
+  display: contents;
+}
+
+.vuse-header .vuse-cta:any-link {
+  display: inline-flex;
+  order: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 30px;
+  border-radius: 50px;
+  padding: 13px 16px;
+  background-color: var(--vh-blue);
+  color: var(--vh-white);
+  font-family: calibri, var(--vh-font-bold);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.18s ease;
+}
+
+.vuse-header .vuse-cta:any-link:hover,
+.vuse-header .vuse-cta:any-link:focus-visible {
+  background-color: var(--vh-blue-light);
+}
+
+.vuse-header .vuse-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+  border: 0;
+  padding: 1px 6px;
+  background: none;
+  color: var(--vh-blue);
+  font-family: var(--vh-font-bold);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.vuse-header .vuse-tool img,
+.vuse-header .vuse-nav-icon-link img {
+  width: auto;
+  height: auto;
+  aspect-ratio: auto;
+}
+
+/* profile/store live in the mobile menu below 900px */
+.vuse-header .vuse-icon-link {
+  display: none;
+  padding: 0;
+}
+
+.vuse-header .vuse-icon-label {
+  margin-top: 4px;
+}
+
+/* menu toggle: three lines that morph into a cross */
+.vuse-header .vuse-hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  order: 3;
+  margin-left: 12px;
+  border: 0;
+  padding: 7px 0 0;
+  background: none;
+  color: var(--vh-blue);
+  font-family: var(--vh-font-bold);
+  cursor: pointer;
+}
+
+.vuse-header .vuse-hamburger-icon,
+.vuse-header .vuse-hamburger-icon::before,
+.vuse-header .vuse-hamburger-icon::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--vh-blue);
+  transition: transform 0.2s, background-color 0.2s, top 0.2s;
+}
+
+.vuse-header .vuse-hamburger-icon {
+  position: relative;
+  margin: 6px 0;
+}
+
+.vuse-header .vuse-hamburger-icon::before,
+.vuse-header .vuse-hamburger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.vuse-header .vuse-hamburger-icon::before {
+  top: -6px;
+}
+
+.vuse-header .vuse-hamburger-icon::after {
+  top: 6px;
+}
+
+.vuse-header .vuse-hamburger[aria-expanded='true'] .vuse-hamburger-icon {
+  background-color: transparent;
+}
+
+.vuse-header .vuse-hamburger[aria-expanded='true'] .vuse-hamburger-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.vuse-header .vuse-hamburger[aria-expanded='true'] .vuse-hamburger-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.vuse-header .vuse-hamburger-label {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+/* mobile menu panel (the generic `header nav` grid from header.css does not apply) */
+.vuse-header nav.vuse-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  min-height: 0;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  background-color: var(--vh-white);
+}
+
+.vuse-header nav.vuse-nav.is-open {
+  display: block;
+}
+
+.vuse-header .vuse-nav-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vuse-header .vuse-nav-list > li {
+  grid-column: 1 / -1;
+  border-bottom: 2px solid var(--vh-divider);
+}
+
+.vuse-header .vuse-nav-list a:any-link {
+  display: block;
+  padding: 20px 24px 20px 20px;
+  color: var(--vh-blue);
+  font-family: var(--vh-font-bold);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color 0.18s ease;
+}
+
+.vuse-header .vuse-nav-list a:any-link:hover,
+.vuse-header .vuse-nav-list a:any-link:focus-visible {
+  color: var(--vh-blue-light);
+}
+
+/* highlighted item: gradient band on mobile, gradient text on desktop */
+.vuse-header .vuse-nav-list .is-highlight a:any-link {
+  background-image: var(--vh-highlight);
+  color: var(--vh-white);
+}
+
+.vuse-header .vuse-nav-list > .vuse-nav-mobile-only {
+  grid-column: auto;
+}
+
+.vuse-header .vuse-nav-list > .vuse-nav-mobile-only:has(+ .vuse-nav-mobile-only) {
+  border-right: 2px solid var(--vh-divider);
+}
+
+.vuse-header .vuse-nav-list .vuse-nav-icon-link:any-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vuse-header .vuse-nav-icon-link .vuse-icon-label {
+  margin-top: 4px;
+}
+
+/* notification drawer */
+.vuse-header .vuse-drawer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  box-sizing: border-box;
+  width: min(478px, 100%);
+  padding: 32px 10px 0 34px;
+  background-image: linear-gradient(164.22deg, rgb(61 135 203) 24.82%, rgb(35 97 146) 74.47%, rgb(27 54 93) 99.29%);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.vuse-header .vuse-drawer.is-open {
+  transform: none;
+}
+
+.vuse-header .vuse-drawer-close {
+  position: relative;
+  margin-left: 18px;
+}
+
+.vuse-header .vuse-drawer-title {
+  margin: 22px 43px 0 11px;
+  border-top: 2px solid var(--vh-white);
+  padding: 25px 0 10px 4px;
+  color: var(--vh-white);
+  font-family: var(--vh-font-bold);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 26px;
+  text-transform: capitalize;
+}
+
+.vuse-header .vuse-drawer-links {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vuse-header .vuse-drawer-links a:any-link {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  min-height: 32px;
+  padding-left: 15px;
+  color: var(--vh-white);
+  font-family: var(--vh-font-bold);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23px;
+  text-decoration: none;
+}
+
+.vuse-header .vuse-drawer-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--vh-orange);
+}
+
+@media (width >= 600px) {
+  .vuse-header .vuse-warning-text {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+/* desktop: logo + inline links | Join Rewards, notifications, profile, store */
+@media (width >= 900px) {
+  /* desktop: the warning scrolls with the page */
+  .vuse-header {
+    padding-top: 0;
+  }
+
+  .vuse-header .vuse-warning {
+    position: static;
+  }
+
+  .vuse-header .vuse-warning-box {
+    height: 180px;
+    min-height: 0;
+    border-width: 13px;
+  }
+
+  .vuse-header .vuse-warning-text {
+    padding: 0;
+    font-size: 55px;
+    font-weight: 500;
+    line-height: 55px;
+  }
+
+  .vuse-header .vuse-announcement-close {
+    right: 26px;
+  }
+
+  .vuse-header .vuse-navbar {
+    min-height: 75px;
+    padding: 0 16px;
+  }
+
+  .vuse-header .vuse-brand {
+    order: 0;
+    margin: 0;
+    padding: 3px 20px 5px 14px;
+  }
+
+  .vuse-header .vuse-brand img {
+    width: 105px;
+    height: 26px;
+  }
+
+  .vuse-header nav.vuse-nav,
+  .vuse-header nav.vuse-nav.is-open {
+    position: static;
+    display: block;
+    height: auto;
+    overflow: visible;
+    background: none;
+  }
+
+  .vuse-header .vuse-nav-list {
+    display: flex;
+  }
+
+  .vuse-header .vuse-nav-list > li {
+    border: 0;
+  }
+
+  .vuse-header .vuse-nav-list > .vuse-nav-mobile-only {
+    display: none;
+  }
+
+  .vuse-header .vuse-nav-list a:any-link {
+    padding: 15px 18px;
+    line-height: 24px;
+  }
+
+  .vuse-header .vuse-nav-list .is-highlight a:any-link {
+    background-clip: text;
+    color: transparent;
+  }
+
+  .vuse-header .vuse-tools {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 20px;
+  }
+
+  .vuse-header .vuse-icon-link {
+    display: flex;
+  }
+
+  .vuse-header .vuse-hamburger {
+    display: none;
+  }
+
+  .vuse-header .vuse-cta:any-link + .vuse-tool {
+    margin-left: 11px;
+  }
+
+  .vuse-header .vuse-tool + .vuse-tool {
+    margin-left: 14px;
+  }
+
+  .vuse-header .vuse-tool + .vuse-tool + .vuse-tool {
+    margin-left: 20px;
+  }
+}

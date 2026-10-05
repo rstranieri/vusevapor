@@ -1,0 +1,20 @@
+{
+  "variantName": "cards-promo",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "program-promo-tiles",
+    "imagePattern": "full-bleed-background + logo",
+    "structure": "background + logo + text + cta"
+  },
+  "contentPattern": "One row per tile (2 rows), 2 cells: [background image] | [logo image (alt 'Vuse The Drop' / 'Vuse All Access Rewards'), p text, p > a CTA ('Explore More' -> /the-drop.html, 'Get Rewarded' -> /rewards/home.html)]",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

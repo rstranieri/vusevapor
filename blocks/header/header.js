@@ -516,6 +516,13 @@ function syncMobileNavHeight(nav) {
 const NAV_ITEMS = '.default-content-wrapper > ul > li';
 
 export default async function decorate(block) {
+  // VUSE pages (template: vuse) use their own header variant and nav fragment
+  if (getMetadata('template') === 'vuse') {
+    const { default: decorateVuseHeader } = await import('./vuse-header.js');
+    await decorateVuseHeader(block);
+    return;
+  }
+
   const { body, eventRoot } = getBlockContext(block);
 
   // Load nav content (skip if aem-embed already provided content)

@@ -1,0 +1,218 @@
+/* VUSE brand theme – scoped to pages with metadata `template: vuse` (body.vuse) */
+@import url('https://use.typekit.net/hxh4btv.css');
+
+body.vuse {
+  /* brand tokens (extracted from vusevapor.com) */
+  --vuse-navy: rgb(27 54 93);
+  --vuse-blue: rgb(35 97 146);
+  --vuse-sky: rgb(141 200 232);
+  --vuse-ink: rgb(29 29 27);
+  --vuse-iron-gray: rgb(77 77 77);
+  --vuse-grey: rgb(241 242 242);
+  --vuse-page: rgb(249 249 249);
+  --vuse-white: rgb(255 255 255);
+  --vuse-gradient: linear-gradient(90deg, rgb(141 200 232), rgb(61 135 203), rgb(35 97 146), rgb(27 54 93));
+  --vuse-button-glow: radial-gradient(90% 55% at 50% 100%, rgb(141 200 232 / 45%) 0, rgb(141 200 232 / 22%) 40%, rgb(141 200 232 / 0%) 70%);
+  --vuse-radius: 20px;
+  --vuse-panel-margin: 20px;
+
+  /* map onto the project's semantic tokens */
+  --body-font-family: mundial, "Gotham Book", sans-serif;
+  --heading-font-family: mundial, "Gotham Bold", sans-serif;
+  --background-color: var(--vuse-page);
+  --text-color: var(--vuse-ink);
+  --link-color: var(--vuse-blue);
+  --link-hover-color: var(--vuse-navy);
+  --body-line-height: 1.25;
+  --grid-container-width: 100%;
+
+  color-scheme: light;
+  background-image: none;
+  font-weight: 300;
+}
+
+@media (width >= 1200px) {
+  body.vuse {
+    --grid-container-width: 1280px;
+  }
+}
+
+/* typography */
+body.vuse main h1,
+body.vuse main h2,
+body.vuse main h3,
+body.vuse main h4,
+body.vuse main h5,
+body.vuse main h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--vuse-navy);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+body.vuse main h1,
+body.vuse main h2 {
+  font-size: 34px;
+  line-height: 36px;
+}
+
+body.vuse main h3 {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+/* no h2 accent bar on VUSE pages (the :not() matches the specificity of the lazy-styles rule) */
+body.vuse main > .section:not(.h2-accent) h2::after {
+  content: none;
+}
+
+body.vuse main p {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--vuse-iron-gray);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+body.vuse main .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+/* sections */
+body.vuse main > .section {
+  padding-block: 40px;
+}
+
+body.vuse main > .section:first-child {
+  padding-block: 0;
+}
+
+body.vuse main > .section.grey {
+  margin-inline: var(--vuse-panel-margin);
+  border-radius: var(--vuse-radius);
+  padding-block: 25px;
+  background-color: var(--vuse-grey);
+}
+
+body.vuse main > .section.gradient-headline {
+  padding-block: 60px;
+}
+
+/* device swatches flow straight into the key features (blocks carry their own spacing) */
+body.vuse main > .section.columns-swatches-container {
+  padding-block-end: 0;
+}
+
+body.vuse main > .section.columns-swatches-container + .section.cards-feature-container {
+  padding-block-start: 30px;
+}
+
+/* tile rows sit closer together than regular sections */
+body.vuse main > .section.cards-promo-container,
+body.vuse main > .section.cards-teaser-container {
+  padding-block: 20px;
+}
+
+body.vuse main > .section.gradient-headline h2 {
+  background-image: var(--vuse-gradient);
+  background-clip: text;
+  color: transparent;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 55px;
+  letter-spacing: -2.5px;
+}
+
+@supports not (background-clip: text) {
+  body.vuse main > .section.gradient-headline h2 {
+    color: var(--vuse-navy);
+  }
+}
+
+/* buttons */
+body.vuse main p.button-container {
+  margin: 0;
+}
+
+body.vuse main a.button:any-link {
+  min-width: 128px;
+  height: 42px;
+  border: 0;
+  border-radius: var(--vuse-radius);
+  padding: 11px 25px;
+  background-color: var(--vuse-navy);
+  background-image: none;
+  color: var(--vuse-white);
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: normal;
+  text-transform: none;
+  transition: background 0.2s ease;
+}
+
+body.vuse main a.button:any-link::after {
+  content: none;
+}
+
+body.vuse main a.button:any-link:hover,
+body.vuse main a.button:any-link:focus-visible,
+body.vuse main a.button:any-link:active {
+  border: 0;
+  background: var(--vuse-button-glow), var(--vuse-navy);
+  box-shadow: none;
+  color: var(--vuse-white);
+  transform: none;
+}
+
+body.vuse main a.button:any-link:focus-visible {
+  outline: 2px solid var(--vuse-blue);
+  outline-offset: 2px;
+}
+
+@media (width >= 900px) {
+  body.vuse main h1,
+  body.vuse main h2 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  body.vuse main h3 {
+    font-size: 26px;
+  }
+
+  body.vuse main > .section {
+    padding-block: 60px;
+  }
+
+  body.vuse main > .section.grey {
+    padding: 30px 25px;
+  }
+
+  body.vuse main > .section.grey .default-content-wrapper {
+    padding-block: 30px 65px;
+  }
+
+  body.vuse main > .section.gradient-headline {
+    padding-block: 100px;
+  }
+
+  body.vuse main > .section.cards-promo-container,
+  body.vuse main > .section.cards-teaser-container {
+    padding-block: 23px;
+  }
+
+  body.vuse main > .section.gradient-headline h2 {
+    font-size: 84px;
+    font-weight: 200;
+    line-height: 105px;
+    letter-spacing: -4px;
+  }
+}

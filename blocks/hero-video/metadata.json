@@ -1,0 +1,20 @@
+{
+  "variantName": "hero-video",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "product-series-hero",
+    "imagePattern": "video-background",
+    "structure": "eyebrow + heading + subheading"
+  },
+  "contentPattern": "Row 1: background media cell - link(s) to the desktop MP4 (and optional mobile MP4) plus an optional poster image. Row 2: eyebrow paragraph 'ORIGINAL SERIES', h1 'America's #1 Vape*' (asterisk as <sup>), paragraph 'Your flavor. Your nicotine strength. Your Vuse.'",
+  "usage": {
+    "pagesUsing": ["https://www.vusevapor.com/originals.html"],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-05"
+  },
+  "options": [],
+  "memberVariantIds": []
+}

@@ -1,0 +1,213 @@
+/* cards-teaser: row of illustration tiles with overlaid title, text and CTA pill
+   (vusevapor.com "Text Sign-Up / Offers / Store Locator" tiles).
+   The tile artwork (rounded card + drop shadow) is baked into the image, so the image is
+   always shown uncropped at its natural ratio. Tiles are themed in order: blue, green, orange. */
+
+/* Source tiles span the viewport (capped at 1440px) with a 17px gutter, not the 1280px grid */
+main > .section > .cards-teaser-wrapper {
+  max-width: 1440px;
+  padding: 0 27px;
+}
+
+.cards-teaser > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 39px;
+}
+
+/* per-tile theme tokens (default / 1st, 4th ... tile = blue) */
+.cards-teaser > ul > li {
+  --cards-teaser-title-color: var(--vuse-white, rgb(255 255 255));
+  --cards-teaser-text-color: var(--vuse-white, rgb(255 255 255));
+  --cards-teaser-cta-bg: var(--vuse-white, rgb(255 255 255));
+  --cards-teaser-cta-fill: transparent;
+  --cards-teaser-cta-color: var(--vuse-navy, rgb(27 54 93));
+  --cards-teaser-cta-border: linear-gradient(90deg, rgb(27 54 93), rgb(27 54 93) 18%, rgb(35 97 146) 40%, rgb(61 135 203) 50%, rgb(141 200 232));
+  --cards-teaser-cta-glow: radial-gradient(90% 55% at 50% 100%, rgb(141 200 232 / 45%) 0, rgb(141 200 232 / 22%) 40%, rgb(141 200 232 / 0%) 70%);
+  --cards-teaser-ring-stops: rgb(61 135 203) 0%, rgb(35 97 146) 17.5%, rgb(27 54 93) 35%, rgb(141 200 232) 52.5%;
+
+  position: relative;
+  display: grid;
+  min-width: 0;
+}
+
+/* 2nd, 5th ... tile = green (white art: dark text, filled dark-green CTA) */
+.cards-teaser > ul > li:nth-child(3n + 2) {
+  --cards-teaser-title-color: rgb(78 91 49);
+  --cards-teaser-text-color: var(--vuse-iron-gray, rgb(77 77 77));
+  --cards-teaser-cta-bg: rgb(61 68 30);
+  --cards-teaser-cta-fill: rgb(61 68 30);
+  --cards-teaser-cta-color: var(--vuse-white, rgb(255 255 255));
+  --cards-teaser-cta-border: linear-gradient(90deg, rgb(61 68 30), rgb(61 68 30) 18%, rgb(78 91 49) 40%, rgb(103 130 58) 50%, rgb(169 194 63));
+  --cards-teaser-cta-glow: radial-gradient(90% 55% at 50% 100%, rgb(169 194 63 / 45%) 0, rgb(169 194 63 / 22%) 40%, rgb(169 194 63 / 0%) 70%);
+  --cards-teaser-ring-stops: rgb(103 130 58) 0%, rgb(78 91 49) 17.5%, rgb(61 68 30) 35%, rgb(169 194 63) 52.5%;
+}
+
+/* 3rd, 6th ... tile = orange */
+.cards-teaser > ul > li:nth-child(3n) {
+  --cards-teaser-cta-color: rgb(129 49 47);
+  --cards-teaser-cta-border: linear-gradient(90deg, rgb(129 49 47), rgb(129 49 47) 18%, rgb(169 67 30) 40%, rgb(220 88 42) 50%, rgb(255 160 106));
+  --cards-teaser-cta-glow: radial-gradient(90% 55% at 50% 100%, rgb(255 160 106 / 45%) 0, rgb(255 160 106 / 22%) 40%, rgb(255 160 106 / 0%) 70%);
+  --cards-teaser-ring-stops: rgb(220 88 42) 0%, rgb(169 67 30) 17.5%, rgb(129 49 47) 35%, rgb(255 160 106) 52.5%;
+}
+
+/* Hover ring: 2px gradient glow that follows the pointer (--mouse-x/--mouse-y set by the block JS).
+   Painted below the artwork, so it only shows around the art's transparent margin. */
+.cards-teaser > ul > li::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  padding: 2px;
+  border-radius: 30px;
+  background: radial-gradient(200px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), var(--cards-teaser-ring-stops), transparent 100%);
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s;
+}
+
+.cards-teaser > ul > li:hover::before {
+  opacity: 1;
+}
+
+/* Background layer: the artwork defines the tile size */
+.cards-teaser .cards-teaser-card-background {
+  grid-area: 1 / 1;
+  position: relative;
+  line-height: 0;
+}
+
+.cards-teaser .cards-teaser-card-background img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* never crop the baked-in rounded card: override the global 16:9 placeholder ratio */
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* Content layer: left column, vertically centred over the artwork */
+.cards-teaser .cards-teaser-card-body {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 16px 16px 16px calc(5% + 16px);
+}
+
+.cards-teaser .cards-teaser-card-body > * {
+  margin: 0;
+}
+
+.cards-teaser .cards-teaser-card-body h1,
+.cards-teaser .cards-teaser-card-body h2,
+.cards-teaser .cards-teaser-card-body h3,
+.cards-teaser .cards-teaser-card-body h4 {
+  margin: 0 0 15px;
+  color: var(--cards-teaser-title-color);
+  font-family: var(--heading-font-family, mundial, "Gotham Bold", sans-serif);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.cards-teaser .cards-teaser-card-body > p {
+  margin: 0 0 10px;
+  color: var(--cards-teaser-text-color);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* CTA wrapper (source .cmp-teaser__action-container): 1px brand-gradient ring around the pill */
+.cards-teaser .cards-teaser-card-body > p.button-container {
+  display: flex;
+  margin: 5px 0 0;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--cards-teaser-cta-border) border-box;
+  line-height: 0;
+}
+
+/* CTA link (source .cmp-teaser__action-link): borderless 128x42 pill */
+main .cards-teaser .cards-teaser-card-body a.button:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 128px;
+  height: 42px;
+  margin: 0;
+  border: 0;
+  border-radius: 20px;
+  padding: 12px;
+  background: var(--cards-teaser-cta-fill);
+  color: var(--cards-teaser-cta-color);
+  font-family: var(--body-font-family, mundial, "Gotham Book", sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+main .cards-teaser .cards-teaser-card-body a.button:any-link:hover,
+main .cards-teaser .cards-teaser-card-body a.button:any-link:focus-visible,
+main .cards-teaser .cards-teaser-card-body a.button:any-link:active {
+  border: 0;
+  background: var(--cards-teaser-cta-glow), var(--cards-teaser-cta-bg);
+  box-shadow: none;
+  color: var(--cards-teaser-cta-color);
+  transform: none;
+}
+
+main .cards-teaser .cards-teaser-card-body a.button:any-link:focus-visible {
+  outline: 2px solid var(--vuse-blue, rgb(35 97 146));
+  outline-offset: 2px;
+}
+
+/* No background image: content spans the tile */
+.cards-teaser > ul > li.cards-teaser-card-no-background {
+  --cards-teaser-title-color: var(--vuse-white, rgb(255 255 255));
+  --cards-teaser-text-color: var(--vuse-white, rgb(255 255 255));
+
+  min-height: 200px;
+  border-radius: var(--vuse-radius, 20px);
+  background-color: var(--vuse-navy, rgb(27 54 93));
+}
+
+@media (width >= 900px) {
+  main > .section > .cards-teaser-wrapper {
+    padding: 0 17px;
+  }
+
+  .cards-teaser > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 34px;
+  }
+
+  .cards-teaser .cards-teaser-card-body {
+    padding: 0 0 0 calc(5% + 20px);
+  }
+
+  .cards-teaser .cards-teaser-card-body h1,
+  .cards-teaser .cards-teaser-card-body h2,
+  .cards-teaser .cards-teaser-card-body h3,
+  .cards-teaser .cards-teaser-card-body h4 {
+    line-height: 28px;
+  }
+}

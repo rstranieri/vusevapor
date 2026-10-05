@@ -6,6 +6,13 @@ import { loadFragment } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
+  // VUSE pages (template: vuse) use their own footer variant and fragment
+  if (getMetadata('template') === 'vuse') {
+    const { default: decorateVuseFooter } = await import('./vuse-footer.js');
+    await decorateVuseFooter(block);
+    return;
+  }
+
   // load footer as fragment (skip if aem-embed already provided content)
   if (block.textContent === '') {
     const footerMeta = getMetadata('footer');
